@@ -76,3 +76,28 @@ int main()
 	}
 	   return 0;
   }
+
+
+/*#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+    char temp[30],lhs,alpha[10];
+    cout << "Enter the production : ";
+    cin >> temp;
+    cout << "Input : " << temp << endl;
+    int count=0,pos=2, pos1 =-1;
+    for(int i=0; i < strlen(temp); i++){
+        if(temp[i] == '|'){
+            count++;
+        }
+    }
+    lhs = temp[0];
+    char parts[count+1][10];
+    for(int i =0; i<count+1; i++){
+        for( int j =pos; gram[i]!='|')
+    }
+
+
+    return 0;
+}

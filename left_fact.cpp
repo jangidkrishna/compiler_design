@@ -5,6 +5,16 @@ struct lang{
     string lhs, rhs[10];
 };
 
+string common(string a, string b){
+    string result;
+    for(int i=0;i<a.length();i++){
+        if(a[i] == b[i] && a[i-1] == b[i-1]){
+            result += a[i];
+        }
+    }
+    return result;
+}
+
 int main(){
     string temp, alpha, adash;
     cout << "Enter the production : ";
@@ -16,12 +26,26 @@ int main(){
         if(temp[i] == '|'){
             input.rhs[count].assign(temp,pos+1,i-pos-1);
             pos = i;
-            cout << "RHS : " << input.rhs[count] << endl;
             count++;
         }
     }
     input.rhs[count].assign(temp, pos+1, temp.length()-pos-1);
-    cout << "RHS : " << input.rhs[count] << endl;
     input.lhs.assign(temp,0,1);
-    cout << "LHS : " << input.lhs << endl;
+
+    for(int i=1; i<=count;i++){
+        string z = common(input.rhs[i-1],input.rhs[i]);
+        if(alpha.compare(z)!=0){
+            alpha = z;
+        }
+
+    }
+    cout << "Ans : " << endl;
+    cout << input.lhs << "->" << alpha << input.lhs << "'" <<endl;
+    cout << input.lhs << "'->" ;
+    for(int i=0;i<count+1;i++){
+        cout << input.rhs[i].substr(alpha.length(), input.rhs[i].length()) << "|";
+    }
+    cout << endl;
+
+    return 0;
 }
