@@ -5,9 +5,8 @@ struct lang{
     string lhs, rhs1, rhs2;
 };
 
-
 int main(){
-    string temp, alpha, beta;
+    string temp, alpha, beta, adash;
     cout << "Enter the production : ";
     getline(cin, temp);
     cout << "Input : " << temp << endl;
@@ -17,12 +16,17 @@ int main(){
     for(int i=0;i<n;i++){
         if(temp[i]== '|' ){
             flag = i;
-            cout << "Flag :" << flag <<endl;
         }
     }
+    input.lhs.assign(temp,0,1);
+    input.rhs1.assign(temp,2,flag-2);
     alpha.assign(temp, 3, flag-3);
-    cout << "Alpha : " << alpha << endl;
     beta.assign(temp,flag+1,n-flag+1);
-    cout << "Beta : " <<  beta << endl;
+    input.rhs2.assign(beta);
+    adash.assign(input.lhs);
+    adash += "'";
+    cout << "Ans:" << endl;
+    cout << input.lhs << "->" << beta << adash << endl;
+    cout << input.lhs << "->" << alpha << adash << "| E" << endl;
     return 0;
 }
