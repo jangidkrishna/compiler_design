@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string.h>
+#include <conio.h>
+
+using namespace std;
+int main()
+{   
+    char pdt[100];
+    int i=0;
+    char rhs[10][20];
+    int r=0;
+    cin>>pdt;
+    char buffer[20];
+    int b=0;
+    for(i=2;i<strlen(pdt);i++)
+    {   if(isalpha(pdt[i])&&i!=strlen(pdt)-1)
+       { 
+    	buffer[b++]=pdt[i];
+       }
+       else
+       {
+       	buffer[b]='\0';
+       	b=0;
+       	strcpy(rhs[r++],buffer);
+	   }
+    	
+	}
+	for(i=0;i<r;i++)
+	{
+		cout<<rhs[i]<<endl;
+	}
+	return 0;
+}
