@@ -1,48 +1,69 @@
 #include<bits/stdc++.h>
 using namespace std;
+void follow(char c);
+int m=0,n;
+char prod[10][10],f[10];
+void first(char c){
+    if(!isupper(c)){
+        f[m++] = c;
+    }
+    for(int k=0;k<n;k++){
+        if(prod[k][0] == c){
+            if(prod[k][2] == '$'){
+                follow(prod[k][0]);
+            }else if (prod[k][2]){
+                f[m++] = prod[k][2];
+            }else{
+                first(prod[k][2]);
+            }
 
-struct lang{
-    string lhs, rhs[5], first, follow;
-    int no;
-};
+        }
+    }
+}
+
+void follow(char c){
+    if(prod[0][0]==c){
+        f[m++] = '$';
+    }
+    for(int i=0;i<n;i++){
+        for(int j=2; j<strlen(prod[i]);j++){
+            if (prod[i][j] == c){
+                if (prod[i][j+1] != '\0'){
+                    first(prod[i][j+1]);
+                }
+                if(prod[i][j+1]== '\0' && c!=prod[i][0]){
+                    follow(prod[i][0]);
+                }
+                
+            }
+        }
+    }
+
+}
 
 int main(){
 
-    string temp,temp_lhs;
     cout << "enter no of productions" << endl;
-    int n,flag=0;
+    int flag=0,z;
+    char ch,find;
     cin >> n;
-    lang prod[10];
-    getline(cin ,temp);
-    for(int i=0;i<n;i++){
-        cout << "Enter the production : "<< endl;
-        getline(cin ,temp);
-        temp_lhs.assign(temp,0,1);
-        cout << "TEmp lhs : " << temp_lhs<< endl;
-        for(int j=0;j<n;j++){
-            cout << i;
-            if(prod[j].lhs.compare(temp_lhs)==0){
-                flag = j;
-                cout << "Flag :" <<flag << endl;
-            }
-        } 
-        cout <<endl;
-        if(flag == i){
-            prod[flag].rhs[prod[flag].no].assign(temp,2,temp.length()-2);
-            prod[flag].no++;
-        }else{
-            prod[i].lhs.assign(temp,0,1);
-            prod[i].rhs[0].assign(temp,2,temp.length()-2);
-            prod[i].no = 1;
-        }
-            
+    cout << "enter productions" << endl;
+    for(int i=0; i<n ;i++){
+        scanf("%s%c",prod[i],&ch);
     }
 
-    /*for(int i=0;i<n;i++){
-        cout << prod[i].no ;
-    }*/
-    cout << prod[0].lhs.compare(prod[1].lhs);
+    do{
+        m=0;
+        cout << "enter the element" << endl;
+        cin >> find;
+        first(find);
+        cout  << "First : " << f << endl;
+        strcpy(f,"");
+        m=0;
+        follow(find);
+        cout << "Follow : " << f << endl;
+
+    }while(z==1);
 
     return 0;
-
 }
