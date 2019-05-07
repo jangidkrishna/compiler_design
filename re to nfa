@@ -53,20 +53,21 @@ default:{if(c==0)
 				if((isalpha(m[i]))&&(isalpha(m[i+1])))
 					{t[r][r+1]=m[i];t[r+1][r+2]=m[i+1];r=r+2;c=1;}
 					c=1;}
-		else if(c==1)
-		{
-			if(isalpha(m[i+1]))
+			else if(c==1)
 			{
-				t[r][r+1]=m[i+1];r=r+1;c=2;
+				if(isalpha(m[i+1]))
+				{
+					t[r][r+1]=m[i+1];r=r+1;c=2;
 				}
 			
-		   }
+			}
 	        else{
 				if(isalpha(m[i+1])){
 				t[r][r+1]=m[i+1];r=r+1;c=3;}
-				}
-		}break;
+			}
 		}
+		break;
+	}
 }
 } printf("\n  ");
 for(j=0;j<=r;j++) 
