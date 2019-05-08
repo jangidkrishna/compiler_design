@@ -41,11 +41,9 @@ int main(){
                 table[top+2][top+3] = re[i+1];
                 top+=3;
                 break;
-
+           
             /*default:{   
-                    if (third_char == 0){
-                        
-                                
+                    if (third_char == 0){                    
                     }
                 }
 
